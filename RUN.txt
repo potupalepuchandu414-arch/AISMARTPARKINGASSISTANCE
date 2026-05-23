@@ -1,0 +1,17 @@
+Backend (from folder exsel-smart-parking/backend):
+  pip install -r requirements.txt
+  set PYTHONPATH=.
+  copy .env.example .env
+  uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+
+Frontend (from folder exsel-smart-parking/frontend):
+  npm install
+  npm run dev
+
+Open http://localhost:5173 — API proxies to port 8000 in dev.
+Default admin after first boot: username admin / password admin123
+
+ESP32 IR occupancy (when HARDWARE_API_KEY empty, no header needed):
+  PATCH http://127.0.0.1:8000/hardware/slots/1/sensor
+  Body: {"sensor_occupied": true}
+  Content-Type: application/json
